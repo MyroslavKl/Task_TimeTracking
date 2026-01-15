@@ -1,5 +1,4 @@
-﻿using Dapper;
-using TimeTracking.API.Models;
+﻿using TimeTracking.API.Models;
 using TimeTracking.API.Repositories.Interfaces;
 
 namespace TimeTracking.API.Repositories
@@ -55,39 +54,33 @@ namespace TimeTracking.API.Repositories
 
         public async Task<IEnumerable<TimeEntry>> GetAllAsync(string? employeeName, CancellationToken ct = default)
         {
-            using var connection = CreateConnection();
             var sql = string.IsNullOrEmpty(employeeName) ? QUERY_GET_ALL : QUERY_SORT_BY_NAME;
+
             var param = string.IsNullOrEmpty(employeeName) ? null : new { EmployeeName = employeeName };
 
-            return await connection.QueryAsync<TimeEntry>(new CommandDefinition(sql, param, cancellationToken: ct));
+            return await QueryAsync<TimeEntry>(sql, param, ct);
         }
 
         public async Task<TimeEntry?> GetByIdAsync(int id, CancellationToken ct = default)
         {
-            using var connection = CreateConnection();
-            return await connection.QuerySingleOrDefaultAsync<TimeEntry>(
-                new CommandDefinition(QUERY_GET_BY_ID, new { Id = id }, cancellationToken: ct));
+            return await QuerySingleOrDefaultAsync<TimeEntry>(QUERY_GET_BY_ID, 
+                new { Id = id }, ct);
         }
 
         public async Task<int> CreateAsync(TimeEntry timeEntry, CancellationToken ct = default)
         {
-            using var connection = CreateConnection();
-            return await connection.ExecuteScalarAsync<int>(
-                new CommandDefinition(QUERY_INSERT_RECORD, timeEntry, cancellationToken: ct));
+            return await ExecuteScalarAsync<int>(QUERY_INSERT_RECORD, timeEntry, ct);
         }
 
         public async Task UpdateAsync(TimeEntry timeEntry, CancellationToken ct = default)
         {
-            using var connection = CreateConnection();
-            await connection.ExecuteAsync(
-                new CommandDefinition(QUERY_UPDATE_RECORD, timeEntry, cancellationToken: ct));
+            await ExecuteAsync(QUERY_UPDATE_RECORD, timeEntry, ct);
         }
 
         public async Task<decimal> GetTotalHoursForDayAsync(string employeeName, DateTime date, CancellationToken ct = default)
         {
-            using var connection = CreateConnection();
-            return await connection.ExecuteScalarAsync<decimal>(
-                new CommandDefinition(QUERY_GET_TOTAL_HOURS, new { EmployeeName = employeeName, Date = date }, cancellationToken: ct));
+            return await ExecuteScalarAsync<decimal>(QUERY_GET_TOTAL_HOURS, 
+                new { EmployeeName = employeeName, Date = date }, ct);
         }
     }
 }
