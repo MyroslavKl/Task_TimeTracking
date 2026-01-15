@@ -1,0 +1,36 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{71516060-ED09-4835-AF80-D01FBFB26941}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TimeTracking.API", "src\TimeTracking.API\TimeTracking.API.csproj", "{FF1AA282-9072-4FDC-A780-97B48625B773}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{41B76863-F570-45E7-9EB1-6B8AB6830D15}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TimeTracking.Tests", "tests\TimeTracking.Tests\TimeTracking.Tests.csproj", "{D9AA92F4-9134-454F-8E72-77751D1E4119}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{FF1AA282-9072-4FDC-A780-97B48625B773}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FF1AA282-9072-4FDC-A780-97B48625B773}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FF1AA282-9072-4FDC-A780-97B48625B773}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FF1AA282-9072-4FDC-A780-97B48625B773}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D9AA92F4-9134-454F-8E72-77751D1E4119}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D9AA92F4-9134-454F-8E72-77751D1E4119}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D9AA92F4-9134-454F-8E72-77751D1E4119}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D9AA92F4-9134-454F-8E72-77751D1E4119}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{FF1AA282-9072-4FDC-A780-97B48625B773} = {71516060-ED09-4835-AF80-D01FBFB26941}
+		{D9AA92F4-9134-454F-8E72-77751D1E4119} = {41B76863-F570-45E7-9EB1-6B8AB6830D15}
+	EndGlobalSection
+EndGlobal
