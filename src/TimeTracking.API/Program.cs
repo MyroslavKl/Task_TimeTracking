@@ -1,13 +1,23 @@
+using TimeTracking.API.Data;
+using TimeTracking.API.Repositories.Interfaces;
+using TimeTracking.API.Repositories;
+using TimeTracking.API.Middlewares;
+
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+builder.Services.AddScoped<DbInitializer>();
+builder.Services.AddScoped<ITimeEntryRepository, TimeEntryRepository>();
+
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
+await app.EnsureDatabaseCreated();
+
+app.UseMiddleware<ExceptionHandlingMiddleware>(); 
+
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
@@ -15,6 +25,7 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+app.UseAuthorization();
+app.MapControllers();
 
 app.Run();
-
